@@ -6,10 +6,11 @@ export function $() {
 	return new Dom();
 }
 
-$.create = (className) => {
-	const $el = document.createElement('div');
-	if (className) {
-		$el.classList.add(className);
+// static method
+$.create = (tagName, classes = '') => {
+	const el = document.createElement(tagName);
+	if (classes) {
+		el.classList.add(classes);
 	}
-	return $el;
+	return el;
 };
