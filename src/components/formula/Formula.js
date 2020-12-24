@@ -15,4 +15,13 @@ export class Formula extends ExcelComponent {
       <div class="input" contenteditable spellcheck="false"></div>
 		`;
 	}
+
+	onInput(event) {
+		console.log(this.$root);
+		console.log(event.target.textContent.trim(), 'input');
+	}
+
+	onClick() {
+		console.log('click');
+	}
 }
