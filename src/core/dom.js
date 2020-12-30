@@ -30,6 +30,14 @@ class Dom {
 		return this;
 	}
 
+	closest(select) {
+		return $(this.$el.closest(select));
+	}
+
+	getCoords() {
+		return this.$el.getBoundingClientRect();
+	}
+
 	on(eventType, callback) {
 		this.$el.addEventListener(eventType, callback);
 	}
