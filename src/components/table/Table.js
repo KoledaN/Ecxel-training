@@ -23,13 +23,19 @@ export class Table extends ExcelComponent {
 			const coords = $target.getCoords();
 			const coordsParent = $parent.getCoords();
 
-			const col = $parent.data.col;
-			const cells = this.$root.$el.querySelectorAll(`[data-col="${col}"]`);
+			const type = $target.data.resize;
+			const cells = this.$root.findAll(`[data-col="${$parent.data.col}"]`);
 
 			document.onmousemove = e => {
-				const delta = e.pageX - coords.x;
-				const value = coordsParent.width + delta;
-				cells.forEach(el => el.style.width = value + 'px');
+				if (type === 'col') {
+					const delta = e.pageX - coords.x;
+					const value = coordsParent.width + delta;
+					cells.forEach(el => el.style.width = value + 'px');
+				} else {
+					const delta = e.pageY - coords.y;
+					const value = coordsParent.height + delta;
+					$parent.$el.style.height = value + 'px';
+				}
 			};
 
 			document.onmouseup = () => {

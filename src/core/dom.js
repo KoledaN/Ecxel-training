@@ -34,8 +34,12 @@ class Dom {
 		return this;
 	}
 
-	closest(select) {
-		return $(this.$el.closest(select));
+	closest(selector) {
+		return $(this.$el.closest(selector));
+	}
+
+	findAll(selector) {
+		return this.$el.querySelectorAll(selector);
 	}
 
 	getCoords() {
