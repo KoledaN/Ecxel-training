@@ -42,6 +42,12 @@ class Dom {
 		return this.$el.querySelectorAll(selector);
 	}
 
+	css(styles = {}) {
+		Object.keys(styles).forEach(key => {
+			this.$el.style[key] = styles[key];
+		});
+	}
+
 	getCoords() {
 		return this.$el.getBoundingClientRect();
 	}

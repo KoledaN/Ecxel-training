@@ -34,7 +34,7 @@ export class Table extends ExcelComponent {
 				} else {
 					const delta = e.pageY - coords.y;
 					const value = coordsParent.height + delta;
-					$parent.$el.style.height = value + 'px';
+					$parent.css({height: value + 'px'});
 				}
 			};
 
