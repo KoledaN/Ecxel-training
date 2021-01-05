@@ -1,3 +1,5 @@
+import { $ } from '../../core/dom';
+
 const CODES = {
 	A: 65,
 	Z: 90
@@ -53,5 +55,8 @@ export function createTable(rowsCount = 15) {
 	for (let i = 0; i < rowsCount; i++) {
 		rows.push(createRow(i + 1, cells));
 	}
-	return rows.join('');
+	const wrap = $.create('div');
+	wrap.attr('data-type', 'wrap');
+	wrap.html(rows.join(''));
+	return wrap.html();
 }

@@ -22,6 +22,14 @@ class Dom {
 		return this;
 	}
 
+	attr(name, value) {
+		if (value) {
+			this.$el.setAttribute(name, value);
+			return this;
+		}
+		return this.$el.getAtribute(name);
+	}
+
 	append(node) {
 		if (node instanceof Dom) {
 			node = node.$el;
