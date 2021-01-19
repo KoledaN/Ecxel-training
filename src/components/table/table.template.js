@@ -1,5 +1,3 @@
-import { $ } from '../../core/dom';
-
 const CODES = {
 	A: 65,
 	Z: 90
@@ -38,6 +36,10 @@ function toChar(_, number) {
 	return String.fromCharCode(CODES.A + number);
 }
 
+function wrapTable(content) {
+  return `<div data-type="wrap">${content}</div>`;
+}
+
 export function createTable(rowsCount = 15) {
 	const colsCount = CODES.Z - CODES.A + 1;
 	const rows = [];
@@ -45,7 +47,7 @@ export function createTable(rowsCount = 15) {
 		.fill('')
 		.map(toChar)
 		.map(toColumn)
-		.join('');
+    .join('');
 	const cells = new Array(colsCount)
 		.fill('')
 		.map(toCell)
@@ -54,9 +56,6 @@ export function createTable(rowsCount = 15) {
 	rows.push(createRow(null, cols));
 	for (let i = 0; i < rowsCount; i++) {
 		rows.push(createRow(i + 1, cells));
-	}
-	const wrap = $.create('div');
-	wrap.attr('data-type', 'wrap');
-	wrap.html(rows.join(''));
-	return wrap.html();
+  }
+  return wrapTable(rows.join(''));
 }

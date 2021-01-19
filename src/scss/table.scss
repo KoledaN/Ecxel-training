@@ -70,7 +70,7 @@
 
 	.col-resize, .row-resize {
 		position: absolute;
-		bottom: 0;
+		bottom: -1px;
 		right: 0;
 		background: $primary-color;
 		opacity: 0;
