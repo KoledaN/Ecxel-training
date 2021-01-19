@@ -1,3 +1,5 @@
+import { capitalize } from './utils';
+
 class Dom {
 	constructor(selector) {
 		this.$el = typeof selector === 'string'
@@ -28,7 +30,15 @@ class Dom {
 			return this;
 		}
 		return this.$el.getAtribute(name);
-	}
+  }
+
+  scroll(direction, value) {
+    if (value) {
+      this.$el['scroll' + capitalize(direction)] = value;
+      return this;
+    }
+    return this.$el['scroll' + capitalize(direction)];
+  }
 
 	append(node) {
 		if (node instanceof Dom) {
