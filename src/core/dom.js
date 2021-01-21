@@ -66,6 +66,20 @@ class Dom {
 		});
 	}
 
+	addClass(className) {
+		this.$el.classList.add(className);
+		return this;
+	}
+
+	removeClass(className) {
+		this.$el.classList.remove(className);
+		return this;
+	}
+
+	find(select) {
+		return $(this.$el.querySelector(select));
+	}
+
 	getCoords() {
 		return this.$el.getBoundingClientRect();
 	}
