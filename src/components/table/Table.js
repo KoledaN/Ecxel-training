@@ -32,7 +32,45 @@ export class Table extends ExcelComponent {
 		if (shouldResize(event)) {
 			resizeHandler(this.$root, event);
 		} else if (isCell) {
+			const {shiftKey} = event;
+			if (shiftKey) {
+				const start = this.selection.group[0].id(true);
+				console.log(start);
+				const finish = $(event.target).id(true);
+				console.log(finish);
+				const rowLine = line(start.row, finish.row);
+				const colLine = line(start.col, finish.col);
+				console.log(cells(rowLine, colLine));
+				// console.log(line(0, 4));
+			} else {
 			this.selection.select($(event.target));
+			console.log(this.selection.group);
+			}
 		}
 	}
+}
+
+function line(start, finish) {
+	if (start > finish) {
+		const newStart = finish;
+		finish = start;
+		start = newStart;
+	}
+	const m = [];
+	for (let i = start; i <= finish; i++) {
+		m.push(i);
+	}
+	return m;
+}
+
+function cells(arrRow, arrCol) {
+	const m = [];
+	arrRow.reduce((row) => {
+		arrCol.forEach(col => {
+			m.push(`${row}:${col}`);
+			return m;
+		})
+		, m;
+	});
+	return m;
 }

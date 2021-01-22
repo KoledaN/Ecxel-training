@@ -24,6 +24,17 @@ class Dom {
 		return this;
 	}
 
+	id(flag) {
+		if (flag) {
+			const id = this.id().split(':');
+			return {
+				row: +id[0],
+				col: +id[1]
+			};
+		}
+		return this.data.id;
+	}
+
 	attr(name, value) {
 		if (value) {
 			this.$el.setAttribute(name, value);
