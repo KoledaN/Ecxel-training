@@ -24,8 +24,8 @@ class Dom {
 		return this;
 	}
 
-	id(flag) {
-		if (flag) {
+	id(parse) {
+		if (parse) {
 			const id = this.id().split(':');
 			return {
 				row: +id[0],

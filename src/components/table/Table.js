@@ -1,6 +1,6 @@
 import { $ } from '../../core/dom';
 import { ExcelComponent } from '../../core/ExcelComponent';
-import { isCell, shouldResize } from './table.functions';
+import { isCell, matrix, shouldResize } from './table.functions';
 import { resizeHandler } from './table.resize';
 import { createTable } from './table.template';
 import { TableSelection } from './TableSelection';
@@ -32,45 +32,14 @@ export class Table extends ExcelComponent {
 		if (shouldResize(event)) {
 			resizeHandler(this.$root, event);
 		} else if (isCell) {
-			const {shiftKey} = event;
-			if (shiftKey) {
-				const start = this.selection.group[0].id(true);
-				console.log(start);
-				const finish = $(event.target).id(true);
-				console.log(finish);
-				const rowLine = line(start.row, finish.row);
-				const colLine = line(start.col, finish.col);
-				console.log(cells(rowLine, colLine));
-				// console.log(line(0, 4));
+			const $target = $(event.target);
+			if (event.shiftKey) {
+				const $cells = 	matrix(this.selection.current, $target)
+					.map(id => this.$root.find(`[data-id="${id}"]`));
+				this.selection.selectGroup($cells);
 			} else {
-			this.selection.select($(event.target));
-			console.log(this.selection.group);
+			this.selection.select($target);
 			}
 		}
 	}
-}
-
-function line(start, finish) {
-	if (start > finish) {
-		const newStart = finish;
-		finish = start;
-		start = newStart;
-	}
-	const m = [];
-	for (let i = start; i <= finish; i++) {
-		m.push(i);
-	}
-	return m;
-}
-
-function cells(arrRow, arrCol) {
-	const m = [];
-	arrRow.reduce((row) => {
-		arrCol.forEach(col => {
-			m.push(`${row}:${col}`);
-			return m;
-		})
-		, m;
-	});
-	return m;
 }
