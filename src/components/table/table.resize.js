@@ -10,11 +10,11 @@ export function resizeHandler($root, event) {
 	const prop = isTypeCol ? 'height' : 'width';
   let value = isTypeCol ? coordsParent.width : coordsParent.height;
   const gap = isTypeCol ? event.pageX - coords.x : event.pageY - coords.y;
-  const scroll = isTypeCol ? $root.scroll('top') : $root.scroll('left');
+  const scrolled = isTypeCol ? $root.scrolled('top') : $root.scrolled('left');
 
 	$target.css({
 		opacity: 1,
-    [prop]: $('[data-type="wrap"]').getCoords()[prop] + scroll + 'px'
+    [prop]: $('[data-type="wrap"]').getCoords()[prop] + scrolled + 'px'
 	});
 
 	document.onmousemove = e => {

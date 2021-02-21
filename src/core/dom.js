@@ -35,6 +35,11 @@ class Dom {
 		return this.data.id;
 	}
 
+  focus() {
+    this.$el.focus();
+    return this;
+  }
+
 	attr(name, value) {
 		if (value) {
 			this.$el.setAttribute(name, value);
@@ -43,7 +48,7 @@ class Dom {
 		return this.$el.getAtribute(name);
   }
 
-  scroll(direction, value) {
+  scrolled(direction, value) {
     if (value) {
       this.$el['scroll' + capitalize(direction)] = value;
       return this;
@@ -67,6 +72,10 @@ class Dom {
 		return $(this.$el.closest(selector));
 	}
 
+  find(select) {
+		return $(this.$el.querySelector(select));
+	}
+
 	findAll(selector) {
 		return this.$el.querySelectorAll(selector);
 	}
@@ -85,10 +94,6 @@ class Dom {
 	removeClass(className) {
 		this.$el.classList.remove(className);
 		return this;
-	}
-
-	find(select) {
-		return $(this.$el.querySelector(select));
 	}
 
 	getCoords() {
